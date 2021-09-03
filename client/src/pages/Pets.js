@@ -17,10 +17,11 @@ const ALL_PETS = gql`
 `;
 
 const CREATE_PET = gql`
-  mutation addNewPet($petDetails: NewPetInput!) {
+  mutation createPet($petDetails: NewPetInput!) {
     addPet(input: $petDetails) {
       id
       name
+      type
       img
     }
   }
@@ -31,18 +32,18 @@ export default function Pets() {
 
   const { data, loading, error } = useQuery(ALL_PETS);
 
-  const [createPet] = useMutation(CREATE_PET);
+  const [createPet, newPet] = useMutation(CREATE_PET);
 
   const onSubmit = (input) => {
     setModal(false);
     createPet({ variables: { petDetails: input } });
   };
 
-  if (loading) {
+  if (loading || newPet.loading) {
     return <Loader />;
   }
 
-  if (error) {
+  if (error || newPet.error) {
     return <p>Error</p>;
   }
 
@@ -59,7 +60,7 @@ export default function Pets() {
           </div>
 
           <div className="col-xs-2">
-            <button onClick={() => setModal(true)}>new pet</button>
+            <button onClick={() => setModal(true)}>Add pet</button>
           </div>
         </div>
       </section>
