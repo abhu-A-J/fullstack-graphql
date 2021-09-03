@@ -12,6 +12,10 @@ const ALL_PETS = gql`
       name
       type
       img
+      owner {
+        id
+        age @client
+      }
     }
   }
 `;
@@ -31,6 +35,8 @@ export default function Pets() {
   const [modal, setModal] = useState(false);
 
   const { data, loading, error } = useQuery(ALL_PETS);
+
+  console.log(data);
 
   const [createPet, newPet] = useMutation(CREATE_PET, {
     // Optimistic UI updates
