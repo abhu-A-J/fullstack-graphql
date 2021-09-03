@@ -52,6 +52,20 @@
       "name": "first",
       "type": "DOG",
       "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "cSddazhCoSyLqXXgKngJ_",
+      "createdAt": 1630697672319,
+      "name": "test cat",
+      "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "pSkIkOMLKtcKmQKvvRCL9",
+      "createdAt": 1630697704984,
+      "name": "new dog",
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
     }
   ]
 }

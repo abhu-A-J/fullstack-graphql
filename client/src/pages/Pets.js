@@ -33,6 +33,10 @@ export default function Pets() {
   const { data, loading, error } = useQuery(ALL_PETS);
 
   const [createPet, newPet] = useMutation(CREATE_PET, {
+    // Optimistic UI updates
+    // optimisticResponse: {},
+
+    // update the cache with the latest returned results from server
     update(cache, { data: { addPet } }) {
       // get all pets first
       const { pets } = cache.readQuery({ query: ALL_PETS });
@@ -49,10 +53,25 @@ export default function Pets() {
 
   const onSubmit = (input) => {
     setModal(false);
-    createPet({ variables: { petDetails: input } });
+    createPet({
+      variables: { petDetails: input },
+      optimisticResponse: {
+        // overall operation
+        __typename: 'Mutation',
+
+        // details for mutation
+        addPet: {
+          __typename: 'Pet',
+          id: Date.now(),
+          name: input.name,
+          type: input.type,
+          img: 'https://via.placeholder.com/300',
+        },
+      },
+    });
   };
 
-  if (loading || newPet.loading) {
+  if (loading) {
     return <Loader />;
   }
 
