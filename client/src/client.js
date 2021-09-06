@@ -29,12 +29,21 @@ const typeDefs = gql`
   extend type User {
     age: Int
   }
+
+  extend type Pet {
+    vaccinated: Boolean!
+  }
 `;
 
 const resolvers = {
   User: {
     age() {
       return 35;
+    },
+  },
+  Pet: {
+    vaccinated() {
+      return Math.random(1) > 0.5 ? true : false;
     },
   },
 };

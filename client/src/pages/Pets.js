@@ -5,28 +5,35 @@ import PetsList from '../components/PetsList';
 import NewPetModal from '../components/NewPetModal';
 import Loader from '../components/Loader';
 
+const PETS_FIELD = gql`
+  fragment PetsFields on Pet {
+    id
+    name
+    type
+    img
+    vaccinated @client
+    owner {
+      id
+      age @client
+    }
+  }
+`;
+
 const ALL_PETS = gql`
+  ${PETS_FIELD}
+
   query AllPets {
     pets {
-      id
-      name
-      type
-      img
-      owner {
-        id
-        age @client
-      }
+      ...PetsFields
     }
   }
 `;
 
 const CREATE_PET = gql`
+  ${PETS_FIELD}
   mutation createPet($petDetails: NewPetInput!) {
     addPet(input: $petDetails) {
-      id
-      name
-      type
-      img
+      ...PetsFields
     }
   }
 `;
@@ -35,8 +42,6 @@ export default function Pets() {
   const [modal, setModal] = useState(false);
 
   const { data, loading, error } = useQuery(ALL_PETS);
-
-  console.log(data);
 
   const [createPet, newPet] = useMutation(CREATE_PET, {
     // Optimistic UI updates
@@ -61,19 +66,19 @@ export default function Pets() {
     setModal(false);
     createPet({
       variables: { petDetails: input },
-      optimisticResponse: {
-        // overall operation
-        __typename: 'Mutation',
+      // optimisticResponse: {
+      //   // overall operation
+      //   __typename: 'Mutation',
 
-        // details for mutation
-        addPet: {
-          __typename: 'Pet',
-          id: Date.now(),
-          name: input.name,
-          type: input.type,
-          img: 'https://via.placeholder.com/300',
-        },
-      },
+      //   // details for mutation
+      //   addPet: {
+      //     __typename: 'Pet',
+      //     id: Date.now(),
+      //     name: input.name,
+      //     type: input.type,
+      //     img: 'https://via.placeholder.com/300',
+      //   },
+      // },
     });
   };
 
