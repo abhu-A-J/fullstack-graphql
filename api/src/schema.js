@@ -35,7 +35,7 @@ const typeDefs = gql`
   }
 
   type Mutation{
-    addPet(input:NewPetInput):Pet!
+    addPet(input:NewPetInput!):Pet!
   }
 
 `;
