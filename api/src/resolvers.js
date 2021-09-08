@@ -8,15 +8,22 @@ const { models, db } = require('./db');
 module.exports = {
   Query: {
     pets(_, arguments, context,info) {
-      const { Pet } = context;
 
-      return models.Pet.findMany();
+      const {input}=arguments;
+      const { models } = context;
+
+      return models.Pet.findMany(input);
+    },
+
+     pet(_, arguments, context,info) {
+
+      const {input}=arguments;
+      const { models } = context;
+
+      return models.Pet.findOne(input);
     },
   },
 
-  // Mutation:{
-
-  // },
   Pet: {
     img(pet) {
       return pet.type === 'DOG'

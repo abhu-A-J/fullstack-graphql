@@ -18,8 +18,15 @@ const typeDefs = gql`
     img: String!
   }
 
+  # input type for creating a pet
+  input PetInput {
+    type: String
+    name: String
+  }
+
   type Query {
-    pets: [Pet]!
+    pets(input: PetInput): [Pet]!
+    pet(input: PetInput): Pet
   }
 `;
 
