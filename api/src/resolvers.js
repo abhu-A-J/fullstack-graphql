@@ -31,5 +31,16 @@ module.exports = {
         : 'http://placekitten.com/300/300';
     },
   },
-  // User: {},
+
+   Mutation:{
+    addPet(_,arguments,context){
+      const {input}=arguments;
+      const {models}=context;
+
+      const createdPet=models.Pet.create(input);
+
+      return createdPet;
+
+    }
+   }
 };

@@ -5,22 +5,34 @@
   },
   "pet": [
     {
-      "id": "1",
-      "createdAt": "number",
-      "name": "boggie",
-      "type": "DOG"
+      "id": "c9MCGmbc1lSdsLpnYFVR5",
+      "createdAt": 1631118802285,
+      "type": "DOG",
+      "name": "boggie-wookie"
     },
     {
-      "id": "2",
-      "createdAt": "number",
-      "name": "wiggle",
-      "type": "CAT"
+      "id": "_KQm21oyIWYxG-olWfPI3",
+      "createdAt": 1631118855576,
+      "type": "CAT",
+      "name": "skyler"
     },
     {
-      "id": "3",
-      "createdAt": "number",
-      "name": "zinga",
-      "type": "DOG"
+      "id": "szxgijZ4Gz92Karw3AWrA",
+      "createdAt": 1631118871261,
+      "type": "DOG",
+      "name": "argon"
+    },
+    {
+      "id": "lYs-SDRZ46d_HCZm4VLOx",
+      "createdAt": 1631118875750,
+      "type": "DOG",
+      "name": "argon-II"
+    },
+    {
+      "id": "6opOJs306UffsjhtR3cNv",
+      "createdAt": 1631118888636,
+      "type": "CAT",
+      "name": "helium"
     }
   ]
 }
