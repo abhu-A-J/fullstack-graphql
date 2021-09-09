@@ -8,8 +8,26 @@ const typeDefs = gql`
     friends: [User]!
   }
 
+  interface Shoe {
+    size: Int!
+    brand: String!
+  }
+
+  type Sneakers implements Shoe {
+    size: Int!
+    brand: String!
+    sport: String!
+  }
+
+  type Boots implements Shoe {
+    size: Int!
+    brand: String!
+    hasGrip: Boolean!
+  }
+
   type Query {
     me: User!
+    shoes: [Shoe!]!
   }
 `;
 
@@ -21,6 +39,23 @@ const resolvers = {
         avatar: 'https://via.placeholder.com/150',
         friends: [],
       };
+    },
+
+    shoes() {
+      return [
+        { brand: 'Nike', size: 10, sport: 'Basketball' },
+        { brand: 'Adidas', size: 6, hasGrip: true },
+      ];
+    },
+  },
+
+  Shoe: {
+    __resolveType(shoe) {
+      if (shoe.hasGrip) {
+        return 'Boots';
+      }
+
+      return 'Sneakers';
     },
   },
 };

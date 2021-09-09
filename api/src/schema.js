@@ -5,9 +5,8 @@ const { gql } = require('apollo-server');
  */
 
 const typeDefs = gql`
-  
   """
-    This can be used for documentation and shows up on tools
+  This can be used for documentation and shows up on tools
   """
   enum PetType {
     DOG
